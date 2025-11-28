@@ -17,7 +17,7 @@ export const SideBar = () => {
 
     return (
 
-        <div className="w-64 h-screen bg-sky-600 text-white flex flex-col">
+        <div className="w-64 h-screen  bg-gradient-to-br from-blue-500 to-purple-600  text-white flex flex-col">
             {/* Header con título y usuario */}
             <div className='flex flex-col items-center'>
                 <h1 className='text-[100px] text-center p-4'>
@@ -30,10 +30,13 @@ export const SideBar = () => {
                 )}
             </div>
             {/* Menú de navegación */}
-            <div>
+
+
+
+            <div >
                 {/* Link: navega sin recargar la página */}
                 <Link to="productos">
-                    <button className='bg-sky-600 w-64 p-4 flex flex-row items-center justify-center text-[20px] hover:bg-sky-500'>
+                    <button className='bg-blue-400 w-64 p-4 flex flex-row items-center justify-center text-[20px] hover:bg-purple-600'>
                         Productos
                     </button>
                 </Link>
@@ -47,6 +50,7 @@ export const SideBar = () => {
                     Cerrar Sesión
                 </button>
             </div>
+
         </div>
     )
 

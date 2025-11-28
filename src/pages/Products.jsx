@@ -11,6 +11,7 @@ Formulario modal para crear/editar
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import { ProductForm } from '../components/ProductForm';
 
 function Products() {
     // Obtener usuario del contexto (opcional, solo para mostrar info)
@@ -20,13 +21,14 @@ function Products() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
 
-    // Cargar productos cuando el componente se monta
+    // Carga productos cuando el componente se monta
     useEffect(() => {
         fetchProducts();
-    }, []); // [] = solo ejecutar una vez al montar
+    }, []);
 
-    // Función para obtener productos de la API
+
     const fetchProducts = async () => {
         try {
             setLoading(true);
@@ -63,13 +65,15 @@ function Products() {
     // Renderizar lista de productos
     return (
         <div className="flex-1 p-8 bg-gray-100">
+            {openModal && <ProductForm open={openModal} actualizarLista={fetchProducts} onClose={() => setOpenModal(false)} />}
+
             <div className="max-w-7xl mx-auto">
-                <div className='flex justify-between'>
+                <div className='flex justify-between mb-4'>
                     <h1 className='font-semibold text-sky-600 text-[30px]'>Productos</h1>
                     <button onClick={() => { setOpenModal(true) }} className="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-4 py-2 rounded-lg cursor-pointer transition">Nuevo Producto</button>
                 </div>
 
-              
+
 
                 {/* Tabla de productos */}
                 <div className="bg-white rounded-lg shadow overflow-hidden">
